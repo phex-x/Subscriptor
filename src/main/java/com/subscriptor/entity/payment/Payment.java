@@ -1,11 +1,13 @@
 package com.subscriptor.entity.payment;
 
+import com.subscriptor.entity.refund.Refund;
 import com.subscriptor.entity.subscription.Subscription;
 import com.subscriptor.entity.user.User;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "payments")
@@ -35,6 +37,9 @@ public class Payment {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    @OneToMany(mappedBy = "payment", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Refund> refunds;
+
     //getters
     public Long getId() { return id; }
     public User getUser() { return user; }
@@ -43,6 +48,7 @@ public class Payment {
     public String getCurrency() { return currency; }
     public PaymentStatus getStatus() { return status; }
     public LocalDateTime getCreatedAt() { return createdAt; }
+    public Set<Refund> getRefunds() { return refunds; }
 
     //setters
     public void setId(Long id) { this.id = id; }
@@ -52,4 +58,5 @@ public class Payment {
     public void setCurrency(String currency) { this.currency = currency; }
     public void setStatus(PaymentStatus status) { this.status = status; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public void setRefunds(Set<Refund> refunds) { this.refunds = refunds; }
 }
