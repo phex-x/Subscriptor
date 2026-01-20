@@ -1,8 +1,10 @@
 package com.subscriptor.entity;
 
+import com.subscriptor.entity.subscription.Subscription;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "subscription_plan")
@@ -32,6 +34,10 @@ public class SubscriptionPlan {
     @Column(name = "trial_days", nullable = false)
     private Integer trialDays;
 
+    @OneToMany(mappedBy = "subscription_plan", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column(name = "subscription_id")
+    private Set<Subscription> subscriptions;
+
     //getters
     public Long getId() { return id; }
     public String getName() { return name; }
@@ -41,6 +47,7 @@ public class SubscriptionPlan {
     public Integer getDurationDays() { return durationDays; }
     public Boolean getIsRecurring() { return isRecurring; }
     public Integer getTrialDays() { return trialDays; }
+    public Set<Subscription> getSubscriptions() { return subscriptions; }
 
     //setters
     public void setId(Long id) { this.id = id; }
@@ -50,4 +57,5 @@ public class SubscriptionPlan {
     public void setCurrency(String currency) { this.currency = currency; }
     public void setDurationDays(Integer durationDays) { this.durationDays = durationDays; }
     public void setIsRecurring(Boolean isRecurring) { this.isRecurring = isRecurring; }
+    public void setSubscriptions(Set<Subscription> subscriptions) { this.subscriptions = subscriptions; }
 }
