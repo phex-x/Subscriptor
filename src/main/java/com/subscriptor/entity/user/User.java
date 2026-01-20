@@ -1,5 +1,6 @@
 package com.subscriptor.entity.user;
 
+import com.subscriptor.entity.notification.Notification;
 import com.subscriptor.entity.payment.Payment;
 import com.subscriptor.entity.subscription.Subscription;
 import jakarta.persistence.*;
@@ -47,6 +48,10 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @Column(name = "payment_id")
     private Set<Payment> payments = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @Column(name = "notification_id")
+    private Set<Notification> notifications = new HashSet<>();
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
