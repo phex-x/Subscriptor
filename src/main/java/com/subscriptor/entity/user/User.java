@@ -1,5 +1,6 @@
 package com.subscriptor.entity.user;
 
+import com.subscriptor.entity.payment.Payment;
 import com.subscriptor.entity.subscription.Subscription;
 import jakarta.persistence.*;
 import org.jspecify.annotations.Nullable;
@@ -42,6 +43,10 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @Column(name = "subscription_id")
     private Set<Subscription> subscriptions = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @Column(name = "payment_id")
+    private Set<Payment> payments = new HashSet<>();
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
