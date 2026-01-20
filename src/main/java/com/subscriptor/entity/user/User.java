@@ -1,4 +1,4 @@
-package com.subscriptor.entity;
+package com.subscriptor.entity.user;
 
 import jakarta.persistence.*;
 import org.jspecify.annotations.Nullable;

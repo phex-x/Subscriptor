@@ -1,4 +1,4 @@
-package com.subscriptor.entity;
+package com.subscriptor.entity.user;
 
 public enum UserRole {
     ADMIN, USER
