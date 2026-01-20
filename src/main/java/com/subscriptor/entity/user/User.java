@@ -1,5 +1,6 @@
 package com.subscriptor.entity.user;
 
+import com.subscriptor.entity.subscription.Subscription;
 import jakarta.persistence.*;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,6 +38,10 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private UserStatus status = UserStatus.ACTIVE;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @Column(name = "subscription_id")
+    private Set<Subscription> subscriptions = new HashSet<>();
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
@@ -77,6 +82,7 @@ public class User implements UserDetails {
     public String getPasswordHash() { return passwordHash; }
     public UserRole getRole() { return role; }
     public UserStatus getStatus() { return status; }
+    public Set<Subscription> getSubscriptions() { return subscriptions; }
     public LocalDateTime getCreatedAt() { return createdAt; }
     public LocalDateTime getUpdatedAt() { return updatedAt; }
 
@@ -88,6 +94,7 @@ public class User implements UserDetails {
     public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
     public void setRole(UserRole role) { this.role = role; }
     public void setStatus(UserStatus status) { this.status = status; }
+    public void setSubscriptions(Set<Subscription> subscriptions) { this.subscriptions = subscriptions; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
     public void setUpdatedAt(LocalDateTime updatedAt) { this.updatedAt = updatedAt; }
 }
