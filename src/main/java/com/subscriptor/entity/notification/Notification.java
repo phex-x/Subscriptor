@@ -25,13 +25,13 @@ public class Notification {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private NotificationStatus status;
+    private NotificationStatus status = NotificationStatus.NEW;
 
     @Column(name = "retry_count", nullable = false)
     private int retryCount = 0;
 
     @Column(name = "created_at", nullable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     //getters
     public Long getId() { return id; }
