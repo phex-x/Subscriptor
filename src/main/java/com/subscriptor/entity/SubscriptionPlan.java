@@ -13,7 +13,7 @@ public class SubscriptionPlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Column(name = "description", nullable = false, length = 500)
@@ -57,5 +57,6 @@ public class SubscriptionPlan {
     public void setCurrency(String currency) { this.currency = currency; }
     public void setDurationDays(Integer durationDays) { this.durationDays = durationDays; }
     public void setIsRecurring(Boolean isRecurring) { this.isRecurring = isRecurring; }
+    public void setTrialDays(Integer trialDays) { this.trialDays = trialDays; }
     public void setSubscriptions(Set<Subscription> subscriptions) { this.subscriptions = subscriptions; }
 }

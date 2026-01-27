@@ -22,7 +22,7 @@ public class Refund {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private RefundStatus status;
+    private RefundStatus status = RefundStatus.REQUESTED;
 
     @Column(name = "reason", length = 500)
     private String reason;
