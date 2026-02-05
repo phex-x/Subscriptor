@@ -42,15 +42,12 @@ public class User implements UserDetails {
     private UserStatus status = UserStatus.ACTIVE;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @Column(name = "subscription_id")
     private Set<Subscription> subscriptions = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @Column(name = "payment_id")
     private Set<Payment> payments = new HashSet<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @Column(name = "notification_id")
     private Set<Notification> notifications = new HashSet<>();
 
     @Column(name = "created_at", nullable = false)
