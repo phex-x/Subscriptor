@@ -35,7 +35,6 @@ public class SubscriptionPlan {
     private Integer trialDays;
 
     @OneToMany(mappedBy = "subscription_plan", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @Column(name = "subscription_id")
     private Set<Subscription> subscriptions;
 
     //getters
