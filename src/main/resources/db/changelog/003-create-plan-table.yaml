@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-plan-table
+      author: dmitriiserov
+      changes:
+        - createTable:
+            tableName: subscription_plans
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: DECIMAL(19, 2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: duration_days
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_recurring
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: trial_date
+                  type: INT
+                  constraints:
+                    nullable: false
