@@ -1,5 +1,6 @@
 package com.subscriptor.mapper;
 
+import com.subscriptor.dto.auth.LoginRequest;
 import com.subscriptor.dto.user.UserCreateRequest;
 import com.subscriptor.dto.user.UserResponse;
 import com.subscriptor.entity.user.User;
@@ -27,5 +28,13 @@ public class UserMapper {
         userResponse.setRole(user.getRole());
 
         return userResponse;
+    }
+
+    public LoginRequest toLoginRequest(UserResponse userResponse) {
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setEmail(userResponse.getEmail());
+        loginRequest.setPassword(userResponse.getFirstName());
+
+        return loginRequest;
     }
 }
