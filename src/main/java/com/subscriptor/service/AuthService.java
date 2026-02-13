@@ -1,6 +1,6 @@
 package com.subscriptor.service;
 
-import com.subscriptor.dto.JwtResponse;
+import com.subscriptor.dto.auth.JwtResponse;
 import com.subscriptor.dto.auth.LoginRequest;
 import com.subscriptor.dto.user.UserCreateRequest;
 import com.subscriptor.entity.user.User;
